@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="new server">
+  <!-- Enable features -->
+  <featureManager>
+    <feature>webProfile-7.0</feature>
+    <feature>localConnector-1.0</feature>
+    <feature>jsf-2.2</feature>
+    <feature>managedBeans-1.0</feature>
+    <feature>cdi-1.2</feature>
+    <feature>jpa-2.1</feature>
+    <feature>jaxrs-2.0</feature>
+    <feature>json-1.0</feature>
+    <feature>beanValidation-1.1</feature>
+  </featureManager>
+  <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
+  <httpEndpoint id="defaultHttpEndpoint" httpPort="8080" httpsPort="9443" />
+  <!-- Automatically expand WAR files and EAR files -->
+  <applicationManager autoExpand="true" />
+  <applicationMonitor updateTrigger="mbean" />
+  <library id="MySQLLib">
+    <fileset dir="${shared.resource.dir}/mysql" includes="*.jar" />
+  </library>
+  <dataSource id="jdbc/helloWorldDS" jndiName="jdbc/helloWorldDS">
+    <jdbcDriver libraryRef="MySQLLib" />
+    <properties databaseName="biblioteca" serverName="localhost" portNumber="3306" user="root" password="" />
+  </dataSource>
+  <application id="licenta_war_exploded" location="G:\licenta\out\artifacts\licenta_war_exploded" name="licenta_war_exploded" type="war" context-root="/biblioteca" />
+</server>
+

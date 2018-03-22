@@ -1,0 +1,21 @@
+{
+  "name": "licenta",
+  "version": "0.1.0",
+  "description": "licenta",
+  "main": "index.js",
+  "dependencies": {
+    "materialize-css": "~0.98.0",
+    "material-design-icons": "*"
+  },
+  "devDependencies": {
+    "font-awesome": "~4.7.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "licenta"
+  ],
+  "author": "Alina Otelea",
+  "license": "BSD-2-Clause"
+}

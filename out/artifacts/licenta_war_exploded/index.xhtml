@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:head>
+    <h:outputStylesheet library="node_modules" name="materialize-css/css/prism.css"  />
+    <h:outputStylesheet library="node_modules" name="materialize-css/css/ghpages-materialize.css"  />
+    <h:outputStylesheet library="bower_components" name="jsgrid/dist/jsgrid.css"  />
+    <h:outputStylesheet library="bower_components" name="jsgrid/dist/jsgrid-theme.css"  />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <h:outputStylesheet library="css" name="table-style.css"  />
+
+    <h:outputScript library="node_modules" name="materialize-css/bin/jquery-2.1.1.min.js" />
+    <h:outputScript library="node_modules" name="materialize-css/bin/materialize.js" />
+    <h:outputScript library="node_modules" name="jquery-validation/dist/jquery.validate.js" />
+    <h:outputScript library="bower_components" name="jsgrid/dist/jsgrid.js"  />
+    <h:outputScript library="js" name="app.js"/>
+</h:head>
+<h:body>
+    <div class="success no-display"></div>
+
+    <nav class="nav-extended">
+        <div class="nav-content">
+            <div class="row">
+                <ul class="tabs tabs-transparent">
+                    <li class="tab s3"><h:outputLink class="active" value="#carti">Carte</h:outputLink></li>
+                    <li class="tab s3"><h:outputLink class="" value="#cititor">Cititor</h:outputLink></li>
+                    <li class="tab s3"><h:outputLink class="" value="#imprumuturi">Imprumuturi</h:outputLink></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="carti" style="">
+        <div class="card">
+            <div class="card-content grey lighten-4">
+                <h:form id="formCarti">
+                <div class="row">
+                    <div class="col s3">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input name="titlu" id="input_titlu" type="text" data-length="40" />
+                                <label for="input_titlu">Titlu</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input name="autor" id="input_autor" type="text" data-length="30" />
+                                <label for="input_autor">Autor</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input name="domeniu" id="input_domeniu" type="text" data-length="30" />
+                                <label for="input_domeniu">Domeniu</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input name="editura" id="input_editura" type="text" data-length="15" />
+                                <label for="input_editura">Editura</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s3">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input name="stoc" id="stoc" type="number" data-length="10" min="0"/>
+                                <label for="stoc">Stoc</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select name="data_publicare" id="years"></select>
+                                <label for="years">Anul publicarii</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input name="isbn" id="isbn" type="text" data-length="13" />
+                                <label for="isbn">ISBN</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h:form>
+
+                <div class="row">
+                    <div class="col s4">
+                        <button id="cautaCarte" class="margin-left btn waves-effect waves-light" type="submit" name="action">Cauta Carte
+                            <i class="material-icons left">search</i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <h4 class="modal-header">Completati datele imprumutului</h4>
+                        <div class="modal-body">
+                            <div class="row">
+                                <h:form id="form">
+                                    <div class="input-field col s3">
+                                        <input id="modal-idCarte" type="text" class="validate"/>
+                                        <label id="label-modal-idCarte" for="modal-idCarte">Id Carte</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input name="cnpCititor" id="modal-cnpCititor" type="text" class="validate"/>
+                                        <label for="modal-cnpCititor">CNP Cititor</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="modal-data-imprumut" type="text" class="validate" />
+                                        <label id="label-modal-imprumut" for="modal-data-imprumut">Data imprumutului</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="modal-data-retur" type="text" class="validate" />
+                                        <label id="label-modal-retur" for="modal-data-retur">Data returnare</label>
+                                    </div>
+                                    <div class="row">
+                                        <p class="eroare"></p>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col s6">
+                                <button id="imprumutaCarte" class="float-left btn waves-effect waves-light" type="submit" name="action">
+                                    Adauga imprumutul
+                                </button>
+                            </div>
+                            <a href="javascript:void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">Inchide</a>
+                        </div>
+                    </div>
+                </div>
+                <!--end of modal-->
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="col s4">
+                <div class="card-content grey lighten-4">
+                    <p class="eroare"></p>
+                    <div class="jsGrid" id="jsGridCarte"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cititor" style="">
+        <div class="card">
+            <div class="card-content grey lighten-4">
+                <div class="row">
+                    <div class="col s3">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="input_cnp" type="text" data-length="13" />
+                                <label for="input_cnp">CNP</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="input_nume" type="text" data-length="10" />
+                                <label for="input_nume">Nume</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="input_prenume" type="text" data-length="10" />
+                                <label for="input_prenume">Prenume</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="input_adresa" type="text" data-length="50" ></input>
+                                <label for="input_adresa">Adresa</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s3">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="phone" type="text" data-length="10" />
+                                <label for="phone">Telefon</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="email" type="email" class="validate" data-legth="30"></input>
+                                <label for="email" data-error="wrong" data-success="right">Email</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="input_data_nasterii" type="date" class="datepicker" />
+                                <label for="input_data_nasterii">Data nasterii</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="input_data_inregistrare" type="date" class="datepicker" />
+                                <label for="input_data_inregistrare">Data inregistrare</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s4">
+                        <button id="cautaCititor" class=" margin-left btn waves-effect waves-light" type="submit" name="action">Cauta Cititor
+                            <i class="material-icons left">search</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content grey lighten-4">
+                <div class="jsGrid" id="jsGridCititor"></div>
+            </div>
+        </div>
+    </div>
+    <div id="imprumuturi" style="">
+        <div class="card">
+            <div class="card-content grey lighten-4">
+                <h:form id="formImprumut">
+                <div class="row">
+                    <div class="col s2">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input name="idCarte" id="idCarte" type="number" data-length="5" />
+                                <label for="idCarte">Id Carte</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s2">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input name="idCititor" id="idCititor" type="number" data-length="5" />
+                                <label for="idCititor">Id Cititor</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s2">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input name="data_imprumut" id="data_imprumut" type="date" class="datepicker" />
+                                <label for="data_imprumut">Data imprumut</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s2">
+                        <div class="row">
+                            <div class="input-field col s12 customDiv">
+                                <input name="data_retur" id="data_retur" type="date" class="datepicker custom" />
+                                <label for="data_retur">Data retur</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s2">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <p>
+                                    <input name="returnata" type="checkbox" id="returnata" />
+                                    <label for="returnata">Returnata</label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h:form>
+                <div class="row">
+                    <div class="col s4">
+                        <button id="cautaImprumut" class="margin-left btn waves-effect waves-light" type="submit" name="action">Cauta Imprumutul
+                            <i class="material-icons left">search</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content grey lighten-4">
+                <div class="jsGrid" id="jsGridImprumut"></div>
+            </div>
+        </div>
+    </div>
+</h:body>
+<!--<h:form>-->
+<!--<h:outputText value="Add new employee "/>-->
+<!--<h:outputLink value="employeeAdd.xhtml">Here</h:outputLink>-->
+<!--</h:form>-->
+</html>

@@ -1,0 +1,50 @@
+.margin-left{
+    margin-left: 10px;
+}
+.jsgrid-cell input{
+    opacity: 1 !important;
+    position: static !important;
+}
+#jsGridImprumut .jsgrid-delete-button{
+    display: none;
+}
+.padding-0{
+    padding: 0 5px;
+}
+.success{
+    background-image: url("/biblioteca/resources/images/bifa.png");
+    background-repeat: no-repeat;
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    z-index: 99999;
+    top: 30%;
+    left: 60%;
+}
+.no-display{
+    display: none;
+}
+
+.float-left{
+    float: left !important;
+}
+
+.eroare{
+    color: red !important;
+}
+.green-text{
+    background: transparent;
+    color: green !important;
+}
+.middle{
+    color: orange !important;
+}
+
+.jsgrid-edit-row input,
+.jsgrid-insert-row input{
+    padding: 0 !important;
+}
+
+.jsgrid-cell{
+    overflow: hidden;
+}
